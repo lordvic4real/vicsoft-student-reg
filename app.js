@@ -1,4 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
+//   const loginForm = document.getElementById("loginForm");
+//   loginForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const loginEmail = document.getElementById("loginEmail").value.trim();
+//     const loginPassword = document.getElementById("loginPassword").value.trim();
+//     if (loginEmail === "admin@vicsoft.com" && loginPassword === "12345") {
+//       localStorage.setItem("logedIn", true);
+//       alert("login successfully");
+//       window.location.href = "/reg.html";
+//     } else {
+//       alert("Invalid email or password");
+//     }
+//   });
+// });
+
+window.onload = () => {
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -12,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Invalid email or password");
     }
   });
-});
- 
+};
+
 document.addEventListener("DOMContentLoaded", function () {
   const studentDetailForm = document.getElementById("studentDetailForm");
 
@@ -27,10 +43,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const phoneNumber = document.getElementById("phoneNumber").value;
     const state = document.getElementById("state").value;
     const address = document.getElementById("address").value;
-    const gender = document.querySelector('input[name="gender"]:checked').value;
     const dob = document.getElementById("dob").value;
-    const program = document.getElementById("program").value;
-    const price = document.getElementById("price").value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const program =
+      document.getElementById("program").options[
+        document.getElementById("program").selectedIndex
+      ].value;
+    const price =
+      document.getElementById("price").options[
+        document.getElementById("price").selectedIndex
+      ].value;
+
     const startDate = document.getElementById("start_date").value;
     const endDate = document.getElementById("end_date").value;
 
@@ -54,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let students = JSON.parse(localStorage.getItem("students")) || [];
     students.push(student);
     localStorage.setItem("students", JSON.stringify(students));
-
+    alert("student registered successfully");
+    // studentDetailForm.reset();
     // Redirect to another page after form submission
     window.location.href = "students.html";
   });
