@@ -1,85 +1,93 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const loginForm = document.getElementById("loginForm");
-//   loginForm.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     const loginEmail = document.getElementById("loginEmail").value.trim();
-//     const loginPassword = document.getElementById("loginPassword").value.trim();
-//     if (loginEmail === "admin@vicsoft.com" && loginPassword === "12345") {
-//       localStorage.setItem("logedIn", true);
-//       alert("login successfully");
-//       window.location.href = "/reg.html";
-//     } else {
-//       alert("Invalid email or password");
-//     }
-//   });
-// });
-
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // Login Form
   const loginForm = document.getElementById("loginForm");
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const loginEmail = document.getElementById("loginEmail").value.trim();
-    const loginPassword = document.getElementById("loginPassword").value.trim();
-    if (loginEmail === "admin@vicsoft.com" && loginPassword === "12345") {
-      localStorage.setItem("logedIn", true);
-      alert("login successfully");
-      window.location.href = "/reg.html";
-    } else {
-      alert("Invalid email or password");
-    }
-  });
-};
+  if (loginForm) {
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const loginEmail = document.getElementById("loginEmail").value.trim();
+      const loginPassword = document
+        .getElementById("loginPassword")
+        .value.trim();
 
-document.addEventListener("DOMContentLoaded", function () {
+      if (loginEmail === "admin@vicsoft.com" && loginPassword === "12345") {
+        localStorage.setItem("logedIn", true);
+        alert("Login successful!");
+        window.location.href = "/reg.html";
+      } else {
+        alert("Invalid email or password.");
+      }
+    });
+  }
+
+  // Student Registration Form
   const studentDetailForm = document.getElementById("studentDetailForm");
+  if (studentDetailForm) {
+    studentDetailForm.addEventListener("submit", (event) => {
+      event.preventDefault();
 
-  studentDetailForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission
+      // Retrieve form values
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phoneNumber = document.getElementById("phoneNumber").value.trim();
+      const state = document.getElementById("state").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const dob = document.getElementById("dob").value.trim();
+      const genderInput = document.querySelector(
+        'input[name="gender"]:checked'
+      );
+      const gender = genderInput ? genderInput.value : "";
+      const program = document.getElementById("program").value.trim();
+      const price = document.getElementById("price").value.trim();
+      const startDate = document.getElementById("start_date").value.trim();
+      const endDate = document.getElementById("end_date").value.trim();
 
-    // Retrieve form values
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const phoneNumber = document.getElementById("phoneNumber").value;
-    const state = document.getElementById("state").value;
-    const address = document.getElementById("address").value;
-    const dob = document.getElementById("dob").value;
-    const gender = document.querySelector('input[name="gender"]:checked').value;
-    const program =
-      document.getElementById("program").options[
-        document.getElementById("program").selectedIndex
-      ].value;
-    const price =
-      document.getElementById("price").options[
-        document.getElementById("price").selectedIndex
-      ].value;
+      // Validate required fields
+      if (!firstName || !lastName || !email || !phoneNumber || !address) {
+        alert("Please fill in all required fields.");
+        return;
+      }
 
-    const startDate = document.getElementById("start_date").value;
-    const endDate = document.getElementById("end_date").value;
+      // Validate optional fields
+      if (!gender) {
+        alert("Please select a gender.");
+        return;
+      }
+      if (!program) {
+        alert("Please select a program.");
+        return;
+      }
+      if (!price) {
+        alert("Please select a price.");
+        return;
+      }
 
-    // Construct student object
-    const student = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNumber: phoneNumber,
-      state: state,
-      address: address,
-      gender: gender,
-      dob: dob,
-      program: program,
-      price: price,
-      start_date: startDate,
-      end_date: endDate,
-    };
+      // Construct student object
+      const student = {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        state,
+        address,
+        gender,
+        dob,
+        program,
+        price,
+        start_date: startDate,
+        end_date: endDate,
+      };
 
-    // Save student data to local storage
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-    students.push(student);
-    localStorage.setItem("students", JSON.stringify(students));
-    alert("student registered successfully");
-    // studentDetailForm.reset();
-    // Redirect to another page after form submission
-    window.location.href = "students.html";
-  });
+      // Save student data to local storage
+      const students = JSON.parse(localStorage.getItem("students")) || [];
+      students.push(student);
+      localStorage.setItem("students", JSON.stringify(students));
+
+      alert("Student registered successfully!");
+      studentDetailForm.reset();
+
+      // Redirect to another page
+      window.location.href = "students.html";
+    });
+  }
 });
