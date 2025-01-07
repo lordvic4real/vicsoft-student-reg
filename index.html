@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Login</title>
   </head>
   <body>
-    <h1>Admin Login</h1>
-    <div>
+    <div class="container">
+      <img src="images/logo.png" alt="logo" class="logo" />
+
+      <h1 class="admin">Administrative Login</h1>
       <form method="post" id="loginForm">
         <div class="form-group">
-          <label for="">Email</label>
+          <label for="loginEmail">Email</label>
           <input
             type="email"
             placeholder="Enter Your Email"
@@ -19,18 +22,35 @@
           />
         </div>
         <div class="form-group">
-          <label for="">Password</label>
-          <input  
-            type="password"
-            placeholder="Enter Your Password"
-            name="password"
-            id="loginPassword"
-          />
+          <label for="loginPassword">Password</label>
+          <div class="password">
+            <img src="images/eye-solid.svg" alt="showPswd" class="eye eye_1" />
+            <img
+              src="images/eye-slash-solid.svg"
+              alt="hidePswd"
+              class="eye eye_2"
+            />
+            <input
+              type="password"
+              placeholder="Enter Your Password"
+              name="password"
+              id="loginPassword"
+            />
+          </div>
         </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
+        <button type="submit" class="btn">Submit</button>
       </form>
+
+      <div class="forgotPass">
+        <p>Forgot Password? <a href="#" class="reset">Reset</a></p>
+      </div>
+      <div class="followUs">
+        <a href="#"><img src="images/facebook.png" alt="" class="follow" /></a>
+        <a href="#"><img src="images/twitter.png" alt="" class="follow" /></a>
+        <a href="#"><img src="images/linkedin.png" alt="" class="follow" /></a>
+        <a href="#"><img src="images/insta.png" alt="" class="follow" /></a>
+      </div>
+      <p class="reg_footer">&#169; Copyright 2024 VICSOFT Global</p>
     </div>
     <script src="app.js"></script>
   </body>

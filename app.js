@@ -91,3 +91,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+const box = document.querySelector(".box_overlay");
+const signInBtn = document.querySelector(".signIn");
+const signUpBtn = document.querySelector(".signUp");
+let btnActive;
+
+function togglerightBg() {
+  btnActive = true;
+  if (btnActive) {
+    box.style.transform = "translateX(100%)";
+    box.style.borderRadius = "15% 15px 15px 15%";
+    signInBtn.style.opacity = "0";
+    signUpBtn.style.opacity = "1";
+  }
+}
+function toggleLeftBg() {
+  btnActive = false;
+  if (!btnActive) {
+    box.style.transform = "translateX(0)";
+    box.style.borderRadius = " 15px 20% 20% 15px";
+    signUpBtn.style.opacity = "0";
+    signInBtn.style.opacity = "1";
+  }
+}
+
+signInBtn.addEventListener("click", togglerightBg);
+signUpBtn.addEventListener("click", toggleLeftBg);
